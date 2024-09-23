@@ -1,0 +1,40 @@
+<div *ngIf="_coreFacade.userData" class="dashboard-container">
+  <mat-card appearance="outlined">
+    <mat-card-content class="content-container">
+      <h3>
+        👋 Welcome
+        <span class="profile-color">
+          {{ _coreFacade.userData.firstName }}
+          {{ _coreFacade.userData.lastName }}
+        </span>
+      </h3>
+      <img
+        [matMenuTriggerFor]="userMenu"
+        [src]="_coreFacade.userData.image"
+        class="profile-image"
+      />
+
+      <mat-menu #userMenu="matMenu">
+        <span mat-menu-item>
+          {{ _coreFacade.userData.email }}
+        </span>
+        <button (click)="_coreFacade.logoutUser()" mat-menu-item>logout</button>
+      </mat-menu>
+    </mat-card-content>
+  </mat-card>
+
+  
+  <div style="display: flex; gap: 1rem">
+    <div class="column">
+      <h3>Todos by UserID: ({{ _coreFacade.userData.id }})</h3>
+      <app-todos [todos]="_coreFacade.todosData"></app-todos>
+    </div>
+    <div class="column">
+      <h3>Posts by UserID: ({{ _coreFacade.userData.id }})</h3>
+      <app-post
+        *ngFor="let post of _coreFacade.postsData"
+        [posts]="post"
+      ></app-post>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="container">
+  <app-login-form
+    *ngIf="displayLogin()"
+    (onFormChange)="displayLogin.set(!displayLogin())"
+    (onLogin)="login($event)"
+  ></app-login-form>
+  <app-register-form
+    *ngIf="!displayLogin()"
+    (onFormChange)="displayLogin.set(!displayLogin())"
+    (onRegister)="register($event)"
+  ></app-register-form>
+</div>

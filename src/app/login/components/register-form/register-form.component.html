@@ -1,0 +1,68 @@
+<mat-card class="card-container mat-elevation-z10" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>⭐ Register ⭐</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="form-container">
+      <mat-form-field subscriptSizing="dynamic" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input
+          #userInput="ngModel"
+          type="text"
+          matInput
+          required
+          [ngModel]="username()"
+          (ngModelChange)="username.set($event)"
+        />
+        <mat-error *ngIf="userInput.hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field subscriptSizing="dynamic" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          #passwordInput="ngModel"
+          type="password"
+          matInput
+          required
+          [ngModel]="password()"
+          (ngModelChange)="password.set($event)"
+        />
+        <mat-error *ngIf="passwordInput.hasError('required')">
+          Password is required</mat-error
+        >
+      </mat-form-field>
+      <mat-checkbox
+        [ngModel]="displaySignalsValues()"
+        (ngModelChange)="displaySignalsValues.set($event)"
+      >
+        Display Signals forms values
+      </mat-checkbox>
+    </div>
+
+    <div *ngIf="displaySignalsValues()">
+      <small>
+        Changes are reactive you can update input values and this will change
+        too!
+      </small>
+      <pre>
+        <code>
+            username: => {{ username() }}
+            password: => {{ password() }}
+        </code>
+      </pre>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="actions-container">
+    <button (click)="onFormChange.emit()" mat-button>Login</button>
+    <button
+      (click)="register()"
+      mat-flat-button
+      color="primary"
+      [disabled]="username().length === 0 || password().length === 0"
+    >
+      Register
+    </button>
+  </mat-card-actions>
+</mat-card>
