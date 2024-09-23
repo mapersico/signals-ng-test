@@ -1,0 +1,15 @@
+.post-card {
+  width: 400px;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.post-reacts {
+  display: flex;
+  gap: .5rem;
+  color: rgb(172, 172, 172);
+}

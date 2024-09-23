@@ -1,0 +1,19 @@
+<mat-card class="post-card" appearance="outlined">
+  <mat-card-content class="post-content">
+    <h4>{{ posts().title }}</h4>
+    <div class="post-reacts">
+      <mat-chip
+        style="background-color: rgb(71, 45, 112)"
+        *ngFor="let tag of posts().tags"
+        >{{ tag }}</mat-chip
+      >
+    </div>
+    <p>{{ posts().body }}</p>
+    <mat-divider></mat-divider>
+    <div class="post-reacts">
+      <span>👍 {{ posts().reactions.likes }}</span>
+      <span>👎 {{ posts().reactions.dislikes }}</span>
+      <span>👁️‍🗨️ {{ posts().views }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>
